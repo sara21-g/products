@@ -1,4 +1,3 @@
-
 // JSON object containing product data
 const productsData = {
     products: [
@@ -18,26 +17,33 @@ productsData.products.forEach(product => {
     );
 });
 
-// Function to filter products by minimum price
+// Function triggered by button click
+function startFilter() {
+    const minPrice = Number(document.getElementById("priceInput").value);
+
+    if (isNaN(minPrice) || minPrice <= 0) {
+        alert("Please enter a valid minimum price");
+        return;
+    }
+
+    filterProductsByMinPrice(minPrice);
+}
+
+// Filter logic
 function filterProductsByMinPrice(minPrice) {
-    const filteredProducts = productsData.products.filter(
+    console.log(`\nProducts with price >= ₹${minPrice}:`);
+
+    const filtered = productsData.products.filter(
         product => product.price >= minPrice
     );
 
-    console.log(`\nProducts with price >= ₹${minPrice}:`);
-    if (filteredProducts.length === 0) {
+    if (filtered.length === 0) {
         console.log("No products found.");
     } else {
-        filteredProducts.forEach(product => {
+        filtered.forEach(product => {
             console.log(
                 `ID: ${product.id}, Name: ${product.name}, Price: ₹${product.price}, Category: ${product.category}`
             );
         });
     }
 }
-
-// Click anywhere on the page to trigger input (GitHub Pages safe)
-document.body.addEventListener("click", function () {
-    const userMinPrice = Number(prompt("Enter minimum price:"));
-    filterProductsByMinPrice(userMinPrice);
-});
