@@ -40,4 +40,4 @@ function filterProductsByMinPrice(minPrice) {
 document.body.addEventListener("click", function () {
     const userMinPrice = Number(prompt("Enter minimum price:"));
     filterProductsByMinPrice(userMinPrice);
-}, { once: true });
+});
